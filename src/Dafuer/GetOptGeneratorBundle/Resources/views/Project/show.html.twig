@@ -1,0 +1,133 @@
+{% extends "DafuerGetOptGeneratorBundle::layout.html.twig" %}
+
+{% block bundle_content %}
+<h1>{{ entity.name }}</h1>
+<h2>{{ entity.description }}</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Shortname</th>
+            <th>Longname</th>
+            <th>Args</th>
+            <th>Mandatory</th>
+            <th>Type</th>            
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for option in entity.projectOptions %}
+        <tr>
+            <td>{{ option.shortName?option.shortName:'-' }}</td>
+            <td>{{ option.longName?option.longName:'-' }}</td>
+            <td>{{ option.arguments==1?'yes':'no' }}</td>
+            <td>{{ option.mandatory==1?'yes':'no' }}</td>
+            <td>{{ option.type?option.type:'-' }}</td>
+            <td>{{ option.description?option.description:'-' }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<BR/>
+
+<div class="alert alert-info">   
+    <div style="position:absolute;text-align:left" >
+        <span style="color: black; vertical-align: text-bottom">
+            Display code in: 
+        </span>
+
+        <select class="input-medium"  onchange="window.location = this.options[this.selectedIndex].getAttribute('data-url');">
+            {% for lang,route in languages %}
+                <option value="" {% if lang == entity.generator.name %}selected="true"{% endif %} data-url="{{ route }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div style="text-align:right;">
+        <a href="#"  id="copy-code" class="btn btn-primary">
+            <i class="icon-paste icon-white"></i> Copy to clipboard
+        </a>   
+        {% if entity.user.id is not null %}
+            <a href="{{ path('DafuerGetOptGeneratorBundle_project_download', { 'id': entity.id, 'lang': entity.generator.id }) }}"  class="btn btn-primary">
+                <i class="icon-download-alt icon-white"></i> Download
+            </a>
+        {% else %}
+            <a href="{{ path('DafuerGetOptGeneratorBundle_project_download_session' ) }}"  class="btn btn-primary">
+                <i class="icon-download-alt icon-white"></i> Download
+            </a>
+        {% endif %}        
+    </div>
+ </div>
+
+<pre>
+<h2>Source code generated in {{ entity.generator.name }}</h2>
+<div id="source-code">
+{% highlight entity.generator.id %}
+{{ entity.generator.code|raw }}
+{% endhighlight %}
+</div>
+</pre>
+{% if entity.created|date('Y-m-d H:i:s') != entity.updated|date('Y-m-d H:i:s') %}
+    <span class="pull-right">Updated at {{ entity.updated | date('Y-m-d H:i:s') }}</span>
+    <BR />
+{% endif %}
+<span class="pull-right">Created at {{ entity.created | date('Y-m-d H:i:s') }}</span>
+
+
+<BR/><BR/><BR/>
+<div class="alert alert-info">
+  
+    
+    <div style="position:absolute;text-align:left">
+        {% if entity.user.id is not null %} 
+             <a href="{{ path('DafuerGetOptGeneratorBundle_project') }}" class="btn btn-success">
+                 <i class="icon-list-alt icon-white"></i> Back to the list
+             </a>
+        {% endif %}
+    </div>
+
+    <div style="text-align:right;">
+        
+
+        {% if entity.user.id is not null %}
+            <a href="{{ path('DafuerGetOptGeneratorBundle_project_edit', { 'id': entity.id }) }}"  class="btn btn-warning">
+                <i class="icon-edit icon-white"></i> Edit
+            </a>
+        {% else %}
+            <a href="{{ path('DafuerGetOptGeneratorBundle_project_edit_session' ) }}"  class="btn btn-warning">
+                <i class="icon-edit icon-white"></i> Edit
+            </a>
+        {% endif %}    
+        {% if entity.user.id is not null %}
+            <a href="{{ path('DafuerGetOptGeneratorBundle_project_new_by', { 'id': entity.id }) }}"  class="btn btn-info">
+                <i class="icon-copy icon-white"></i> Clone
+            </a>            
+            <a href="#myModal" role="button" class="btn btn-danger" data-toggle="modal">
+                <i class="icon-trash icon-white"></i> Delete
+            </a>
+        {% endif %}
+    </div>
+
+ </div>
+<!-- Modal -->
+   <div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Warning</h3>
+    </div>
+    <div class="modal-body">
+        <p>Do you want to delete this project?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+        <a href="{{ path('DafuerGetOptGeneratorBundle_project_delete', { 'id': entity.id }) }}" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
+    </div>
+    </div>
+
+<div id="source-code-hidden" style="display: none">
+{{ entity.generator.code|raw }}
+</div>
+{% endblock %}
+
+

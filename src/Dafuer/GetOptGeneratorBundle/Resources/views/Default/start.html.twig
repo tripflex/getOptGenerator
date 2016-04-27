@@ -1,0 +1,33 @@
+{% extends "DafuerGetOptGeneratorBundle::layout.html.twig" %}
+
+
+{% block bundle_content %}
+
+
+<BR/><BR/><BR/>
+<center>
+    <div style="max-width: 550px; text-align: justify">
+        <p>Currently, you are not logged in. If you have an account, introduce your 
+            logging and password in the top menu. 
+    If you don't have an account, don't worry. You can register now, <b>it's free</b>. 
+    Registered users can store their projects and edit them in the future.
+    In any case, you can try GetOptGenerator without filling the annoying register form.
+    I know it's boring (but it's very quick!). Please, choose one of the following options:</p>
+    </div>
+</center>
+<BR/><BR/>
+
+<center>
+    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-large">
+        <i class="icon-group"></i> &nbsp;
+        Register now!
+    </a>    
+    <a href="{{ path('DafuerGetOptGeneratorBundle_project_new') }}" class="btn btn-success btn-large">
+        <i class="icon-magic"></i> &nbsp;
+        Try creating new project
+    </a>
+</center>
+
+<BR/><BR/>
+<span data-test-status="ok" data-test-route="{{ app.request.attributes.get('_route') }}"></span>
+{% endblock %}

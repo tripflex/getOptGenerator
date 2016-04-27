@@ -1,0 +1,90 @@
+
+    
+    
+    <BR/><BR/><BR/>
+{{ form_widget(form.name, { 'attr': {'class': 'input-xxlarge', 'placeholder':'Project Name', 'style':'font-size:xx-large; font-weight: bold; height:40px'} }) }}
+{{ form_widget(form.description, { 'attr': {'class': 'input-xxlarge', 'placeholder':'Description', 'style':'font-size:x-large; font-weight: bold; height:30px'} }) }}
+<BR/><BR/>
+<span style="font-size: large">Language: &nbsp;</span>{{ form_widget(form.language, { 'attr': {'class': 'input', 'style':'font-size:medium;  height:35px'} }) }}
+<BR/><BR/>
+<BR/>
+<center>{{ form_errors(form) }}</center>
+<div>
+    <div style="text-align: center; font-weight: bold; font-size: x-large;margin-bottom: -5px">Option list</div>
+    <a class="btn btn-primary" style="margin-bottom: 8px" data-collection-add-btn="#dafuer_getoptgeneratorbundle_projecttype_projectOptions_control_group"><i class="icon-plus-sign icon-white"></i>
+    Add Option
+    </a>    
+</div>
+<Tooltip on top</a>
+
+{% set boton='<td><a class="btn btn-danger" data-collection-remove-btn="#dafuer_getoptgeneratorbundle_projecttype_projectOptions___name___control_group"><i class="icon-trash icon-white"></i></a></td>' %}
+    <table class="table table-striped optionProjects"  data-prototype="{{ form_widget(form.projectOptions.vars.prototype)|e }}{{ boton|e }}" id="{{ form.projectOptions.vars.id }}_control_group" class="collection-item">
+    <thead>
+        <tr>
+            <th>
+                <a href="#" class="tooltip-link-white" rel="tooltip" data-placement="top" data-original-title="Option short name will be call after '-'">
+                    Shortname
+                </a>
+            </th>            
+            <th>
+                <a href="#" class="tooltip-link-white" rel="tooltip" data-placement="top" data-original-title="Option long name will be call after '--'">
+                    Longname
+                </a>                
+            </th>
+            <th colspan="2">
+                <a href="#" class="tooltip-link-white" rel="tooltip" data-placement="top" data-original-title="Check it if a value is necessary">
+                    Args
+                </a>                    
+                /
+                <a href="#" class="tooltip-link-white" rel="tooltip" data-placement="top" data-original-title="Check it if this option is required">
+                    Mandatory
+                </a>
+            </th>
+            <th>
+                <a href="#" class="tooltip-link-white" rel="tooltip" data-placement="top" data-original-title="Argument data type">
+                    Type
+                </a>                
+            </th>
+            <th>
+                <a href="#" class="tooltip-link-white" rel="tooltip" data-placement="top" data-original-title="Short description about the option that will be displayed in help function">
+                    Description
+                </a>     
+            </th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody  class="controls">
+    {% for option in form.projectOptions %}
+        <tr>
+            <td>
+                {{ form_widget(option.shortName) }}
+            </td>
+            <td>{{ form_widget(option.longName) }}</td>
+            <td>{{ form_widget(option.arguments) }}</td>
+            {% if (option.get('value').arguments==1) %}
+                <td>{{ form_widget(option.mandatory, { 'attr': { } }) }}</td>
+            {% else %}
+                <td>{{ form_widget(option.mandatory, { 'attr': {'disabled': 'disabled' } }) }}</td>
+            {% endif %}            
+            {% if (option.get('value').arguments==1) %}
+                <td>{{ form_widget(option.type, { 'attr': { } }) }}</td>
+            {% else %}
+                <td>{{ form_widget(option.type, { 'attr': {'disabled': 'disabled' } }) }}</td>
+            {% endif %}
+            <td>{{ form_widget(option.description) }}</td>
+            <td>
+                <a class="btn btn-danger" data-collection-remove-btn="#dafuer_getoptgeneratorbundle_projecttype_projectOptions_0_control_group"><i class="icon-trash icon-white"></i></a>
+             </td>
+        </tr>
+        
+    {% endfor %}
+
+        
+    </tbody>
+    </table>      
+{{ form_rest(form) }}
+    
+
+
+
+

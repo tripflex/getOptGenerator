@@ -1,0 +1,71 @@
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{% block head_style %}
+  {# parent()  //No es necesario llamar al parent #}
+
+{% stylesheets
+       '@DafuerGetOptGeneratorBundle/Resources/public/less/dafuermopabootstrap.less'
+        '@HighlightBundle/Resources/public/*.css'
+%}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/dafuergetoptgenerator/css/getoptgenerator_styles.css') }}" />
+ <link rel="stylesheet" type="text/css" href="{{ asset('bundles/manymulesfontawesome/css/font-awesome.css') }}" />
+ 
+ <link rel="icon" type="image/ong" href="{{ asset('favicon.png') }}" />
+{% endblock %}
+
+{% block container_class %}container{% endblock container_class %}
+
+{% block title %}GetOpt Generator{% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block content %}
+
+    <div class="hero-unit" style="padding-top: 30px;">
+        <center>
+            <div class="page-header" style="border-bottom: 1px solid #862725;">
+                <h1>GetOpt Generator</h1>
+                <h2 style="color:gray">An easy way to start a command line tool</h2>
+            </div>         
+        </center>
+        {% block bundle_content %}{% endblock %}
+    </div>
+{% include "GoogleBundle:Analytics:async.html.twig" %}
+{% endblock %}
+
+{% block footer %}<div class="hero-unit" style="padding: 0.5em;"><span class="email">5reufad@</span> <i class="icon-twitter"></i>&nbsp;<span class="pull-right">Dafuer - 2012 &copy;</span></div>{% endblock footer %}
+
+    {% block foot_script %}
+    {# To only use a subset or add more js overwrite and copy paste this block
+    To speed up page loads save a copy of jQuery in your project and override this block to include the correct path
+    Otherwise the regeneration is done on every load in dev more with use_controller: true
+     #}
+    {% javascripts
+        '@DafuerGetOptGeneratorBundle/Resources/public/js/jquery-1.8.3.min.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-modal.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-dropdown.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-tooltip.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-popover.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-alert.js'
+        '@MopaBootstrapBundle/Resources/bootstrap/js/bootstrap-button.js'
+        '@DafuerGetOptGeneratorBundle/Resources/public/js/collection.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
+        '@DafuerGetOptGeneratorBundle/Resources/public/js/jquery.zclip.min.js'
+        '@DafuerGetOptGeneratorBundle/Resources/public/js/project.js'
+        '@DafuerGetOptGeneratorBundle/Resources/public/js/jquery.placeholder.min.js'
+    %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+<script type="text/javascript">
+    // Start tooltips
+    $(function(){$('[class*="tooltip-link"]').tooltip()});
+    
+    // Start copy projects
+    var zeroswfpath='{{ asset('bundles/dafuergetoptgenerator/js/ZeroClipboard.swf') }}'
+</script>
+<script type="text/javascript">
+    $('input, textarea').placeholder();
+</script>
+{% endjavascripts %}
+{% endblock foot_script %}

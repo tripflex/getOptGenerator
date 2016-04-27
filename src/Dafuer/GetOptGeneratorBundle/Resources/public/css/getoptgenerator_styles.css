@@ -1,0 +1,64 @@
+
+/* Elimino las clases de imagenes de bootstrap para usar las de fontawesome */
+[class^="icon-"] {
+  background-image:none;
+  font-size: 1.2em;
+}
+
+table thead th{
+    color: white;
+    background-color: #441b21;
+}
+
+.tooltip-link-white{
+    text-decoration: none;
+    color: white;
+}
+
+.tooltip-link-white:hover{
+    text-decoration: none;
+    color: white;
+    cursor: default;
+}
+
+.hero-unit p{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.alert{
+    border-style: solid;
+    border-width: 1px;    
+}
+.alert-error{
+    border-color: #B94A48;
+}
+
+.alert-danger{
+    border-color: #C09853;    
+}
+
+.alert-success{
+    border-color: #468847;    
+}
+
+.alert-info{
+    border-color: #3A87AD;    
+}
+
+select{
+    background-color: white;
+    border: 1px solid #CCC;
+    display: inline-block;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+.email{
+ unicode-bidi:bidi-override;
+ direction: rtl;
+}
+
+.placeholder { 
+    color: #aaa; 
+}

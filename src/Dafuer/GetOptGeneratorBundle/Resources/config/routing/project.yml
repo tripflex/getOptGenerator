@@ -1,0 +1,53 @@
+DafuerGetOptGeneratorBundle_project:
+    pattern:  /
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:index" }
+
+DafuerGetOptGeneratorBundle_project_show_session:
+    pattern:  /show/{lang}
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:show", 'id':-1, lang: null }
+
+DafuerGetOptGeneratorBundle_project_show:
+    pattern:  /{id}/show/{lang}
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:show", lang: null }
+
+DafuerGetOptGeneratorBundle_project_download_session:
+    pattern:  /download/{lang}
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:download", 'id':-1, lang: null }
+
+DafuerGetOptGeneratorBundle_project_download:
+    pattern:  /{id}/download/{lang}
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:download", lang: null }
+
+DafuerGetOptGeneratorBundle_project_new:
+    pattern:  /new
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:new", 'id': -1 }
+    
+DafuerGetOptGeneratorBundle_project_new_by:
+    pattern:  /{id}/new
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:new" }    
+
+DafuerGetOptGeneratorBundle_project_create:
+    pattern:  /create
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:create" }
+    requirements: { _method: post }
+
+DafuerGetOptGeneratorBundle_project_edit_session:
+    pattern:  /edit
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:edit", 'id':-1 }      
+      
+DafuerGetOptGeneratorBundle_project_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:edit" }
+  
+DafuerGetOptGeneratorBundle_project_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:update" }
+    requirements: { _method: post }
+    
+DafuerGetOptGeneratorBundle_project_update_session:
+    pattern:  /update
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:update", 'id':-1 }       
+
+DafuerGetOptGeneratorBundle_project_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "DafuerGetOptGeneratorBundle:Project:delete" }

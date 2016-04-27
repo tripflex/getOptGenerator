@@ -1,0 +1,66 @@
+{% extends "DafuerGetOptGeneratorBundle::layout.html.twig" %}
+
+
+{% block bundle_content %}
+
+
+
+<BR/>
+
+<center>
+<div style="max-width: 550px; text-align: justify">
+<h2>1) Why GetOpt Library?</h2>
+<br/>
+<p>
+GetOpt library helps you to parse options and arguments in command lines. Though this work may be tedious, 
+with this library it is easy. GetOpt Library links the options and parameters specifiying the command line
+with the variables defined in your code. GetOpt is implemented in most popular languages.
+</p>
+<BR/><BR/>
+<h2>2) Why GetOpt Generator?</h2>
+<BR />
+<p>
+GetOpt Generator helps you to specify your project options. 
+This web application generates a code scheme to parse your options using the GetOpt Library. 
+Also you can obtain the help function. This information will be displayed using
+-h or --help options. This help contains information about how to run your project.
+</p>
+<BR/><BR/>
+<h2>3) What languages are supported?</h2>
+<BR />
+<p>
+Currently, GetOptGenerator support the following languages:
+<ul>
+{% for language in languages %}
+        <li>{{ language }}</li>
+{% endfor %}
+</ul>
+</p>
+<BR/><BR/>
+<h2>4) How can you contribute?</h2>
+<BR />
+<p>
+You can contribute via GitHub <a href="https://github.com/dafuer/getoptgenerator" target="blank"><i class="icon-github"></i></a>.
+There, you can open issues about new functionalies, bugs or other questions. Also, you
+can improve the GetOpt Generator source code and send it via pull request.
+</p>
+<h2>5) How can you add support to other language?</h2>
+<BR />
+<p>
+    The key is in the <a href="https://github.com/dafuer/GetOptGenerator/tree/master/src/Dafuer/GetOptGeneratorBundle/Entity/Generator" target="blank">generator folder</a>. 
+    You have to modify the Generator class in order to add your language to the languages array. Then, you
+    have to create the LanguageGenerator class extending the Generator class, implementing
+    the abstract methods. You can find examples in other generator classes. Finally, if you 
+    have any doubt, share your questions via GitHub. Good coding! ;)
+</p>
+<h2>6) How can you contact with me?</h2>
+<BR />
+<p>
+    You can contact with me via GitHub <a href="https://github.com/dafuer/getoptgenerator" target="blank"><i class="icon-github"></i></a>,
+    twitter (<i class="icon-twitter"></i> <span class="email">5reufad@</span>) or email (<i class="icon-envelope"></i> <span class="email">se.reufad.rotarenegtpoteg@maet</span>).    
+</p>
+</div>        
+
+</center>
+<span data-test-status="ok" data-test-route="{{ app.request.attributes.get('_route') }}"></span>
+{% endblock %}
